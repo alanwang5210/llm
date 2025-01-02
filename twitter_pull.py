@@ -32,9 +32,6 @@ for tweet in response.data:
 # 提取推文内容进行分析
 tweets_data = [{'text': tweet.text, 'created_at': tweet.created_at, 'id': tweet.id} for tweet in response.data]
 
-data['SentimentText']=data['SentimentText'].apply(lambda sen:" ".join(x.lower() for x in sen.split()))
-print(data['SentimentText'].head())
-
 # 转换为DataFrame
 df = pd.DataFrame(tweets_data)
 
