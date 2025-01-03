@@ -3,12 +3,10 @@ from nltk.corpus import stopwords
 
 from textblob import TextBlob
 
-
 # 计算平均单词长度
 def avg_word(sentence):
     words = sentence.split()
     return sum(len(word) for word in words) / len(words)
-
 
 data = pd.read_csv("tweets_data.csv")
 
