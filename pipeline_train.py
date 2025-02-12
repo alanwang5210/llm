@@ -1,7 +1,7 @@
 import os
 
-os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
-# os.environ['HF_ENDPOINT']  = 'https://mirrors.tuna.tsinghua.edu.cn/hugging-face'
+#os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+os.environ['HF_ENDPOINT'] = 'https://mirrors.tuna.tsinghua.edu.cn/hugging-face'
 
 from transformers import pipeline
 
