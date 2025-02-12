@@ -1,5 +1,7 @@
 import re
 
+#正则表达式训练
+
 text = "111apple123banana456cherry"
 
 # 编译正则表达式，生成Pattern对象

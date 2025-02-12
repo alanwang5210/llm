@@ -4,6 +4,7 @@ from pandas import Series
 
 import numpy as np
 
+#pandas 训练
 # x = pd.Series(['a', 'b', 'c', 'd'], [1, 2, 3, 4])
 # x = pd.Series({"a": 1, "b": 2, "c": 3})
 # y = pd.Series(np.arange(5), np.arange(9, 4, -1))
@@ -22,4 +23,4 @@ df = DataFrame({'name': Series(['Ken', 'Kate', 'Jack']), 'age': [21, 18, 15], 's
 
 print(df.at[2, 'age'])
 
-df.to_csv('hello.csv')
+df.to_csv('./data/hello.csv')

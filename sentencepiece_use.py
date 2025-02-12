@@ -3,7 +3,7 @@ import sentencepiece as spm
 sp = spm.SentencePieceProcessor()
 
 # 加载训练好的模型
-sp.Load("spm_model.model")
+sp.Load("./data/spm_model.model")
 
 # 分词
 text = "SentencePiece is awesome!"

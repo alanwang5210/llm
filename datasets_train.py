@@ -1,4 +1,6 @@
 from datasets import load_dataset
+from datasets import load_from_disk
+
 from transformers import AutoTokenizer
 
 
@@ -47,5 +49,12 @@ print(dataset_split)
 # 使用transformers库（Hugging Face推出的Python库，可以加载各种类型的Transformer模型）
 # 加载bert-base-chinese模型提供的分词器，以便对原语料进行编码，将数据直接转换为模型可以接收的词向量形式
 tokenizer = AutoTokenizer.from_pretrained("bert-base-chinese")
-processed_dataset = dataset_split['train'].map(preprocess_function)
-print(processed_dataset)
+processed_dataset = dataset_split['train'].map(preprocess_function, batched=True)
+
+# 将数据保存到本地
+processed_dataset.save_to_disk("./data/processed_data")
+
+# 从本地加载数据
+disk_datasets = load_from_disk("./data/processed_data")
+
+print(disk_datasets)

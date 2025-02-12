@@ -1,13 +1,14 @@
 import tweepy
 import pandas as pd
 
-# 替换为你的API密钥
+# 从twiter拉取数据
+# 替换为你的API密钥, token登录twitter后获取
 API_KEY = 'Mki9kTijKljSkrfa31rMbnkeo'
 API_SECRET_KEY = 'wu6XWGSVqq2hofrtypZ3a3hPGDvcoMPWxWuOoyjeyCAJJXIHot'
-BEARER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAAGRrxwEAAAAA9goDwZ5HcFb4mkMUaX0HmV0kQOs%3DGsRmdkBtqfq68HsJxkFyc8CFPaF5HFhzM5WDaJ1W7e13qlgWRl'
-
 ACCESS_TOKEN = '1874294859160289280-FmkIgn15vSbrFwRWTg1UBHu7Xj4TZj'
 ACCESS_TOKEN_SECRET = 'ujQY0h8INv3R5FQeUfLpnYPC6eiKzTGlO08lYUH1dAivQ'
+BEARER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA'
+
 # 创建客户端
 client = tweepy.Client(bearer_token=BEARER_TOKEN,
                        consumer_key=API_KEY,
@@ -36,5 +37,4 @@ tweets_data = [{'text': tweet.text, 'created_at': tweet.created_at, 'id': tweet.
 df = pd.DataFrame(tweets_data)
 
 # 保存到CSV文件
-df.to_csv('tweets_data.csv', index=False)
-
+df.to_csv('./data/tweets_data.csv', index=False)

@@ -3,12 +3,16 @@ from nltk.corpus import stopwords
 
 from textblob import TextBlob
 
+
+# 数据预处理
+
 # 计算平均单词长度
 def avg_word(sentence):
     words = sentence.split()
     return sum(len(word) for word in words) / len(words)
 
-data = pd.read_csv("tweets_data.csv")
+
+data = pd.read_csv("./data/tweets_data.csv")
 
 # 通过lower()方法可以将数据集中的英文大写字母转换为英文小写字母。通过upper()方法可以将数据集中的英文小写字母转换为英文大写字母
 data['text'] = data['text'].apply(lambda sen: " ".join(x.lower() for x in sen.split()))
@@ -18,16 +22,16 @@ data['text'] = data['text'].apply(lambda sen: " ".join(x.lower() for x in sen.sp
 data['text'] = data['text'].str.replace(r'[^\w\s]', '', regex=True)
 
 # 去除常用停用词
-#在某些任务中需要从文本数据中去除停用词（或常见单词）。可以创建停用词列表或使用预定义的库，逐一过滤文本中与停用词列表匹配的项。
+# 在某些任务中需要从文本数据中去除停用词（或常见单词）。可以创建停用词列表或使用预定义的库，逐一过滤文本中与停用词列表匹配的项。
 # 这里以NLTK库提供的停用词列表为例进行测试
 stop = stopwords.words('english')
 data['text'] = data['text'].apply(lambda sen: " ".join(x for x in sen.split() if x not in stop))
 
-#稀缺词是指在文本数据中较少出现，并且采用不常用表达方式的词语。我们可以首先对稀缺词进行统计，然后将其直接删除或替换为常见的表达方式。
+# 稀缺词是指在文本数据中较少出现，并且采用不常用表达方式的词语。我们可以首先对稀缺词进行统计，然后将其直接删除或替换为常见的表达方式。
 freq = pd.Series(' '.join(data['text']).split()).value_counts()[-10:]
 data['text'] = data['text'].apply(lambda x: " ".join(x for x in x.split() if x not in freq))
 
-#由于以互联网社交媒体为来源的数据存在大量的拼写错误，因此，拼写校正是一个十分重要的预处理步骤。此处选用TextBlob库进行处理。
+# 由于以互联网社交媒体为来源的数据存在大量的拼写错误，因此，拼写校正是一个十分重要的预处理步骤。此处选用TextBlob库进行处理。
 # TextBlob库可以用来处理多种自然语言处理任务，如词性标注、名词性成分提取、情感分析、文本翻译等。
 data['text'] = data['text'].apply(lambda x: str(TextBlob(x).correct()))
 

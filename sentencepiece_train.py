@@ -2,9 +2,9 @@ import sentencepiece as spm
 
 # 配置参数
 # 训练数据文件路径, 多个文件用逗号分隔, 同时支持读取压缩文件
-input_file = "data.txt"
+input_file = "data/data.txt"
 # 模型输出文件的前缀
-model_prefix = "spm_model"
+model_prefix = "./data/spm_model"
 # 词汇表大小（如 8000、16000）。
 vocab_size = 150
 # --character_coverage：字符覆盖率，默认为 1.0，适用于英文。如果是中文或其他语言，可设为 0.995。
