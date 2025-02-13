@@ -1,5 +1,4 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
-from transformers import pipeline
 
 # 加载本地
 # model_name_or_path = "D:\\workspace\\alan\\pyRag\\models\\BAAI\\bge-m3"
