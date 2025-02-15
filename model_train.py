@@ -6,6 +6,9 @@ from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, DataCollatorWithPadding
 from transformers import TrainingArguments, Trainer
 
+#全参数微调
+#更新预训练模型所有权重参数（所有层、所有神经元）。
+
 # 记录开始时间，用于计算整个脚本运行的时间
 start_time = time.time()
 
