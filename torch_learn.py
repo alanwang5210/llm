@@ -49,12 +49,38 @@ import torch
 
 # NumPy持大型数组、多维数组和矩阵。开发者可以通过tensor. numpy()方法将PyTorch张量转换为NumPy数组，
 # PyTorch张量和NumPy数组将共享底层内存位置，改变任何一个将同时影响\另一个
-a = torch.ones(5)
-print(a)
-b = a.numpy()
-print(b)
+# a = torch.ones(5)
+# print(a)
+# b = a.numpy()
+# print(b)
 
 # 通过torch.from_numpy()方法将NumPy数组转换为PyTorch张量
-a = np.ones(5)
-b = torch.from_numpy(a)
-print(b)
+# a = np.ones(5)
+# b = torch.from_numpy(a)
+# print(b)
+
+
+# Autograd是PyTorch的重要工具之一，具有对张量进行自动微分的功能。
+x = torch.zeros(3, 3, requires_grad=True)
+print(x)
+# 对张量x执行加法计算操作，并输出其操作结果y的grad_fn属性
+y = x + 2
+print(y)
+print(y.grad_fn)
+
+# 乘法
+m = y * y * 3
+# 取平均值
+n = m.mean()
+print(m)
+print(n)
+
+# 调用backward()方法进行反向传播，通过计算图自动计算梯度
+n.backward()
+print(x.grad)
+
+# 计算对数函数的梯度
+x = torch.tensor([0.5, 0.75], requires_grad=True)
+y = torch.log(x[0] * x[1])
+y.backward()
+print(x.grad)
