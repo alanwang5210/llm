@@ -1,0 +1,14 @@
+torch~=2.6.0
+transformers~=4.48.3
+peft~=0.14.0
+numpy~=2.2.2
+datasets~=3.2.0
+chromadb~=0.6.3
+pandas~=2.2.3
+tweepy~=4.15.0
+deepspeed~=0.16.3
+streamlit~=1.42.1
+matplotlib~=3.10.0
+torchvision~=0.21.0
+opencv-python~=4.11.0.86
+sentencepiece~=0.2.0
