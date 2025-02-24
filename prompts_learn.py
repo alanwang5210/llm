@@ -1,5 +1,3 @@
-from langchain_core.prompts import PromptTemplate
-
 # template = """
 # I want you to act as a naming consultant for new companies.
 # What is a good name for a company that makes {product}?
@@ -18,15 +16,8 @@ from langchain_core.prompts import PromptTemplate
 # 下面的代码指定了HumanMessage和SystemMessage两种类型的消息，要求AI完成从英文到法文的翻译任务。
 from langchain.prompts import (
     ChatPromptTemplate,
-    PromptTemplate,
     SystemMessagePromptTemplate,
-    AIMessagePromptTemplate,
     HumanMessagePromptTemplate,
-)
-from langchain.schema import (
-    AIMessage,
-    HumanMessage,
-    SystemMessage
 )
 
 template = "You are a helpful assistant that translates {input_language} to {output_language}."

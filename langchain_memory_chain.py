@@ -1,8 +1,6 @@
 import uuid
 
 import ollama
-from langchain.chains import ConversationChain
-from langchain.memory import ConversationBufferWindowMemory
 from langchain_core.chat_history import InMemoryChatMessageHistory
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnableWithMessageHistory
@@ -11,7 +9,7 @@ from langchain_core.runnables import RunnableWithMessageHistory
 # 创建一个函数，使用 Ollama 代替 OpenAI
 def run_with_ollama(message):
     # 调用 Ollama 模型生成文本，消息格式为 [{role, content}]
-    response = ollama.chat(model="deepseek-r1:7b",
+    response = ollama.chat(model="deepseek-r1:1.5b",
                            messages=[{"role": "user", "content": message.text}])  # 使用您的模型名称（例如 "llama2"）
     return response.message.content.split('</think>')[-1].strip()
 
