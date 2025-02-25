@@ -9,8 +9,6 @@ from langchain_core.runnables import RunnableWithMessageHistory
 from langchain_ollama import OllamaLLM, OllamaEmbeddings
 from langchain_text_splitters import CharacterTextSplitter
 
-from langchain_memory_chain import message_stores
-
 loader = TextLoader('./text.txt', encoding='utf-8')
 docs = loader.load()
 
@@ -26,6 +24,9 @@ db = Chroma.from_texts(_texts, embeddings)
 
 llm = OllamaLLM(model="llama2")
 
+# 定义一个方法，返回当前会话的历史记录
+message_stores = {}
+
 
 def get_session_history(session_id: str) -> InMemoryChatMessageHistory:
     if session_id not in message_stores:
@@ -40,7 +41,7 @@ template = """使用如下信息作为背景知识，回答下述问题。
 回答:"""
 prompt = PromptTemplate(template=template)
 
-runnable = prompt | llm
+runnable = llm
 # 通过 RunnableWithMessageHistory 来管理消息历史
 conversation_with_history = RunnableWithMessageHistory(
     # memory=memory,
@@ -55,9 +56,6 @@ session_id = str(uuid.uuid4())  # 使用 UUID 生成唯一的 session_id
 user_input_1 = "在家工作有什么技巧和策略吗？"
 similar_doc = db.similarity_search(user_input_1, k=1)
 context = similar_doc[0].page_content
-response_1 = conversation_with_history.invoke({
-    "context": context,
-    "input": user_input_1,
-    "configurable": {"session_id": session_id}
-})
+input_1 = prompt.format(context=context, input=user_input_1)
+response_1 = conversation_with_history.invoke(input_1, {"configurable": {"session_id": session_id}})
 print("Response 1:", response_1)
